@@ -1,20 +1,31 @@
-import { Entity, PrimaryKey, Property, StringType } from "@mikro-orm/core";
+import {
+  Embeddable,
+  Entity,
+  Property,
+} from "@mikro-orm/postgresql";
+import { BaseEntity } from "./base.entity";
 
-export class Author {
 
-    @Property()
-    @Unique()
-    email!: string;
-  
-    @Index() // generated name
-    @Property()
-    age?: number;
-  
-    @Index({ name: 'born_index' })
-    @Property()
-    born?: string;
-  
-  }
-  
-  
-  
+@Embeddable()
+export class Social {
+  @Property()
+  twitter?: string;
+
+  @Property()
+  facebook?: string;
+
+  @Property()
+  linkedin?: string;
+}
+
+@Entity()
+export class User extends BaseEntity {
+  @Property()
+  firstName!: string;
+
+  @Property()
+  middleName?: string;
+
+  @Property()
+  lastName!: string;
+}

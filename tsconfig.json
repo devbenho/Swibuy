@@ -1,7 +1,38 @@
 {
-  "extends": "./tsconfig.build.json",
-  "include": ["src/**/*"],
+  "extends": "@rubiin/tsconfig",
   "compilerOptions": {
-    "baseUrl": ".",
-  }
+    "baseUrl": "src",
+    "paths": {
+      "@lib/*": [
+        "./lib/*"
+      ],
+      "@common/*": [
+        "./common/*"
+      ],
+      "@modules/*": [
+        "./modules/*"
+      ],
+      "@entities": [
+        "./entities"
+      ],
+      "@mocks": [
+        "./_mocks_"
+      ],
+      "@generated": [
+        "./generated"
+      ]
+    },
+    "declaration": true,
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "include": [
+    "test/**/*",
+    "src/**/*",
+    "eslint.config.js"
+  ],
+
+  "typeRoots": ["./src/common/@types/typings"]
 }
